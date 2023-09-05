@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/database/database_helper.dart';
+import 'package:school_app/shared/string_const.dart';
 import 'package:school_app/teacher/model/teacher_model.dart';
 
 class AddTeacherScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _AddTeacherScreenState extends State<AddTeacherScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Add Teacher Detail',
+          StringConstant.addTeacherText,
           style: TextStyle(
             fontSize: 24,
           ),
@@ -39,6 +40,7 @@ class _AddTeacherScreenState extends State<AddTeacherScreen> {
           child: Column(
             children: [
               TextField(
+                keyboardType: TextInputType.number,
                 controller: idController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -104,7 +106,7 @@ class _AddTeacherScreenState extends State<AddTeacherScreen> {
       teacherName: teacherNameController.text,
       salary: int.parse(salaryNameController.text),
     );
-    await DatabaseHelper.addPatientData(teacher);
+    await DatabaseHelper.addTeacherData(teacher);
     if (mounted) {
       Navigator.pop(context);
     }
