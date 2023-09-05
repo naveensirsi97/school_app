@@ -31,7 +31,7 @@ class DatabaseHelper {
     });
   }
 
-  static Future addPatientData(Teacher teacher) async {
+  static Future addTeacherData(Teacher teacher) async {
     await database.rawInsert(
       'insert into $teacherTable values(?,?,?)',
       [
@@ -43,7 +43,7 @@ class DatabaseHelper {
     print('Data inserted successfully');
   }
 
-  static Future<List<Teacher>> getPatientData() async {
+  static Future<List<Teacher>> getTeacherData() async {
     List<Map<String, dynamic>> mapList =
         await database.rawQuery('select * from $teacherTable');
 
@@ -56,12 +56,12 @@ class DatabaseHelper {
     return patList;
   }
 
-  static Future deletePatient(int idNo) async {
+  static Future deleteTeacher(int idNo) async {
     await database.rawDelete("delete from $teacherTable where $id = $idNo");
     print("delete teacher successfully");
   }
 
-  static Future updatePatient(Teacher teacher) async {
+  static Future updateTeacher(Teacher teacher) async {
     await database.rawUpdate(
         "update $teacherTable set $teacherName=?,$salary=? where $id=?", [
       teacher.teacherName,
