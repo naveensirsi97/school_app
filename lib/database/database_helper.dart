@@ -14,7 +14,7 @@ class DatabaseHelper {
   static String studentName = 'Name';
   static String grade = 'Grade';
   static String address = 'Address';
-  static String imPath = 'Path';
+
 
   static String subjectTable = 'Subject';
   static String subjectId = 'SubjectId';
