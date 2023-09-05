@@ -35,6 +35,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
             child: Column(
               children: [
                 TextField(
+                  keyboardType: TextInputType.number,
                   controller: rollNoController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -79,7 +80,8 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                   height: 20,
                 ),
                 ElevatedButton(onPressed:()async{
-                  Student student=Student(rollNo:int.parse(rollNoController.text),
+                  Student student=Student(
+                      rollNo:int.parse(rollNoController.text),
                       studentName: nameController.text,
                       grade: int.parse(gradeController.text),
                       address:addressController.text);
