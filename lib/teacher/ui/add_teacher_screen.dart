@@ -46,7 +46,7 @@ class _AddTeacherScreenState extends State<AddTeacherScreen> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  labelText: 'Id',
+                  labelText: StringConstant.labelText1,
                 ),
               ),
               const SizedBox(
@@ -58,7 +58,7 @@ class _AddTeacherScreenState extends State<AddTeacherScreen> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  labelText: 'Name',
+                  labelText: StringConstant.labelText2,
                 ),
               ),
               const SizedBox(
@@ -71,7 +71,7 @@ class _AddTeacherScreenState extends State<AddTeacherScreen> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  labelText: 'Salary',
+                  labelText: StringConstant.labelText3,
                 ),
               ),
               const SizedBox(
