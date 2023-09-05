@@ -10,7 +10,15 @@ class ShowStudentScreen extends StatefulWidget {
 class _ShowStudentScreenState extends State<ShowStudentScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return SafeArea(child:Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+
+          ],
+        ),
+      ),
+    ) );
   }
 }
 

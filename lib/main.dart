@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: routeMap,
       initialRoute: ScreenName.dashboardScreen,
-      title: 'School App',
+      title: 'School App',debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
