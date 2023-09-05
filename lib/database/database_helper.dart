@@ -12,10 +12,9 @@ class DatabaseHelper {
 
   static String studentTable = 'Student';
   static String rollNo = 'RollNo';
-  static String studentName = 'Name';
+  static String studentName = 'StudentName';
   static String grade = 'Grade';
   static String address = 'Address';
-
 
   static String subjectTable = 'Subject';
   static String subjectId = 'SubjectId';
@@ -39,14 +38,20 @@ class DatabaseHelper {
   }
   static Future<List<Student>>
   getStudentData()async{
-    List<Map<String,dynamic>> mapList=await database.rawQuery('select * from $studentTable');
+    List<Map<String, dynamic>> mapList =
+        await database.rawQuery('select * from $studentTable');
 
-    List<Student> stdList=[];
-    for(int i=0;i<mapList.length;i++){
-      Map<String,dynamic> map=mapList[i];
-      Student student=Student.fromMap(map);
+    List<Student> stdList = [];
+    for (int i = 0; i < mapList.length; i++) {
+      Map<String, dynamic> map = mapList[i];
+      Student student = Student.fromMap(map);
       stdList.add(student);
     }
     return stdList;
+  }
+
+  static Future deleteStudent(int IdNo) async {
+    await database.rawDelete('delete from $studentTable where $rollNo=$IdNo');
+    print('Delete successfully');
   }
 }

@@ -27,38 +27,106 @@ class _ShowStudentScreenState extends State<ShowStudentScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: ListView.builder(
             itemCount: (studentList.length),
             itemBuilder: (context, index) {
               Student student = studentList[index];
-              return Column(
-                children: [
-                  Row(
-                    children: [
-                      const Text('RollNo'),
-                      Text(student.rollNo.toString()),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text('Name'),
-                      Text(student.studentName),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text('Grade'),
-                      Text(student.grade.toString()),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text('Address'),
-                      Text(student.address),
-                    ],
-                  ),
-                  const Divider(),
-                ],
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          'RollNo',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
+                        const SizedBox(
+                          width: 80,
+                        ),
+                        Text(
+                          student.rollNo.toString(),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w800),
+                        ),
+                        IconButton(onPressed:(){
+                        showDialog(context: context, builder:(context){
+                          return AlertDialog(
+                            title: const Text('Delete'),
+                            content: const Text('Are you sure you delete it'),
+                            actions: [
+                              TextButton(onPressed: (){
+                                Navigator.pop(context);
+                              }, child:const Text('Cancel'),),
+                              TextButton(onPressed: ()async{
+                              await  DatabaseHelper.deleteStudent(student.rollNo);
+                                showStudentData();
+                                if(mounted) {
+                                  Navigator.pop(context);
+                                }
+                              }, child:const Text('Delete'),),
+                            ],
+                          );
+                        });
+                        }, icon:const Icon(Icons.delete),),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Name',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
+                        const SizedBox(
+                          width: 80,
+                        ),
+                        Text(
+                          student.studentName,
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w800),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Grade',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
+                        const SizedBox(
+                          width: 80,
+                        ),
+                        Text(
+                          student.grade.toString(),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w800),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Address',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
+                        const SizedBox(
+                          width: 60,
+                        ),
+                        Text(
+                          student.address,
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w800),
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                  ],
+                ),
               );
             }),
       ),
