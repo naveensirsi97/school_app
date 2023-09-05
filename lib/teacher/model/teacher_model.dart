@@ -2,21 +2,18 @@ class Teacher {
   int id;
   String teacherName;
   int salary;
-  String subject;
 
   Teacher({
     required this.id,
     required this.teacherName,
     required this.salary,
-    required this.subject,
   });
 
   static Teacher fromMap(Map<String, dynamic> map) {
     return Teacher(
       id: map['Id'],
-      teacherName: map['TeacherName'],
+      teacherName: map['Name'],
       salary: map['Salary'],
-      subject: map['Subject'],
     );
   }
 
@@ -25,7 +22,6 @@ class Teacher {
       'Id': id,
       'Name': teacherName,
       'Salary': salary,
-      'Subject': subject,
     };
   }
 }
