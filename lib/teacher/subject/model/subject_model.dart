@@ -17,7 +17,7 @@ class Subject {
   static Subject fromMap(Map<String, dynamic> map) {
     return Subject(
       subjectId: map['SubjectId'],
-      subjectName: map['SubjectNae'],
+      subjectName: map['SubjectName'],
     );
   }
 }

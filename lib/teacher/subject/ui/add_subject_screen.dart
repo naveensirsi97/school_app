@@ -27,7 +27,7 @@ class _AddSubjectScreenState extends State<AddSubjectScreen> {
         title: const Text(''),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Column(
           children: [
             TextField(

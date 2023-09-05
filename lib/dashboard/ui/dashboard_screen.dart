@@ -35,11 +35,33 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, ScreenName.showTeacherScreen);
-                    },
-                    child: const Text('Show Teacher')),
+                  onPressed: () {
+                    Navigator.pushNamed(context, ScreenName.showTeacherScreen);
+                  },
+                  child: const Text('Show Teacher'),
+                ),
               ),
+              const SizedBox(height: 16,),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ScreenName.addSubjectScreen);
+                  },
+                  child: const Text('Add Subject'),
+                ),
+              ),
+              const SizedBox(height: 16,),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ScreenName.showSubjectScreen);
+                  },
+                  child: const Text('Show Subject'),
+                ),
+              ),
+              const SizedBox(height: 16,),
             ],
           ),
         ),
