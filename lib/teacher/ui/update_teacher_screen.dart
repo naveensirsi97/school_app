@@ -3,19 +3,21 @@ import 'package:school_app/database/database_helper.dart';
 import 'package:school_app/shared/string_const.dart';
 import 'package:school_app/teacher/model/teacher_model.dart';
 
-class UpdatePatientScreen extends StatefulWidget {
-  const UpdatePatientScreen({required this.teacher, super.key});
+class UpdateTeacherScreen extends StatefulWidget {
+  const UpdateTeacherScreen({required this.teacher, super.key});
 
   final Teacher teacher;
 
   @override
-  State<UpdatePatientScreen> createState() => _UpdatePatientScreenState();
+  State<UpdateTeacherScreen> createState() => _UpdateTeacherScreenState();
 }
 
-class _UpdatePatientScreenState extends State<UpdatePatientScreen> {
+class _UpdateTeacherScreenState extends State<UpdateTeacherScreen> {
   late TextEditingController idController;
   late TextEditingController teacherNameController;
   late TextEditingController salaryNameController;
+
+  String currentValue = 'List';
 
   @override
   void initState() {
@@ -109,6 +111,7 @@ class _UpdatePatientScreenState extends State<UpdatePatientScreen> {
       id: int.parse(idController.text),
       teacherName: teacherNameController.text,
       salary: int.parse(salaryNameController.text),
+      subject: currentValue,
     );
     await DatabaseHelper.updateTeacher(teacher);
     if (mounted) {
