@@ -11,14 +11,14 @@ class AddStudentScreen extends StatefulWidget {
 
 class _AddStudentScreenState extends State<AddStudentScreen> {
   late TextEditingController rollNoController;
-  late TextEditingController nameController;
+  late TextEditingController studentNameController;
   late TextEditingController gradeController;
   late TextEditingController addressController;
 
   @override
   void initState() {
     rollNoController = TextEditingController();
-    nameController = TextEditingController();
+    studentNameController = TextEditingController();
     gradeController = TextEditingController();
     addressController = TextEditingController();
     super.initState();
@@ -47,7 +47,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                   height: 20,
                 ),
                 TextField(
-                  controller: nameController,
+                  controller: studentNameController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8)),
@@ -82,7 +82,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                 ElevatedButton(onPressed:()async{
                   Student student=Student(
                       rollNo:int.parse(rollNoController.text),
-                      studentName: nameController.text,
+                      studentName: studentNameController.text,
                       grade: int.parse(gradeController.text),
                       address:addressController.text);
                   await DatabaseHelper.addStudent(student);

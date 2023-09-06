@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/database/database_helper.dart';
 import 'package:school_app/student/model/student_model.dart';
+import 'package:school_app/student/ui/update_student_screen.dart';
 
 class ShowStudentScreen extends StatefulWidget {
   const ShowStudentScreen({super.key});
@@ -61,16 +62,31 @@ class _ShowStudentScreenState extends State<ShowStudentScreen> {
                                 Navigator.pop(context);
                               }, child:const Text('Cancel'),),
                               TextButton(onPressed: ()async{
-                              await  DatabaseHelper.deleteStudent(student.rollNo);
-                                showStudentData();
-                                if(mounted) {
-                                  Navigator.pop(context);
-                                }
-                              }, child:const Text('Delete'),),
-                            ],
-                          );
-                        });
-                        }, icon:const Icon(Icons.delete),),
+                                          await DatabaseHelper.deleteStudent(
+                                              student.rollNo);
+                                          showStudentData();
+                                          if (mounted) {
+                                            Navigator.pop(context);
+                                          }
+                                        },
+                                        child: const Text('Delete'),
+                                      ),
+                                    ],
+                                  );
+                                });
+                          },
+                          icon: const Icon(Icons.delete),
+                        ),
+                        IconButton(
+                          onPressed: () async {
+                            await Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return UpdateStudentScreen(student: student);
+                            }));
+                            showStudentData();
+                          },
+                          icon: const Icon(Icons.edit),
+                        ),
                       ],
                     ),
                     Row(

@@ -54,4 +54,16 @@ class DatabaseHelper {
     await database.rawDelete('delete from $studentTable where $rollNo=$IdNo');
     print('Delete successfully');
   }
+
+  static Future updateStudent(Student student) async {
+    await database.rawUpdate(
+        'update $studentTable set $studentName=?,$grade=?,$address=? where $rollNo=?',
+        [
+          student.studentName,
+          student.grade,
+          student.address,
+          student.rollNo,
+        ]);
+    print('Update Student Successfully');
+  }
 }
