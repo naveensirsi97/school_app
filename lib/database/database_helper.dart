@@ -9,6 +9,7 @@ class DatabaseHelper {
   static String id = 'Id';
   static String teacherName = 'Name';
   static String salary = 'Salary';
+  static String subject = 'Subject';
 
   static String studentTable = 'Student';
   static String rollNo = 'RollNo';
@@ -27,19 +28,23 @@ class DatabaseHelper {
     database =
         await openDatabase(dbPath, version: 1, onCreate: (database, version) {
       database.execute(
-          'create table $teacherTable($id int primary key,$teacherName text,$salary int)');
-      database.execute('create table $subjectTable($subjectId int primary key,$subjectName text)');
+        'create table $teacherTable($id int primary key,$teacherName text,$salary int,$subject text)',
+      );
+      database.execute(
+        'create table $subjectTable($subjectId int primary key,$subjectName text)',
+      );
       print("Table created successfully");
     });
   }
 
   static Future addTeacherData(Teacher teacher) async {
     await database.rawInsert(
-      'insert into $teacherTable values(?,?,?)',
+      'insert into $teacherTable values(?,?,?,?)',
       [
         teacher.id,
         teacher.teacherName,
         teacher.salary,
+        teacher.subject,
       ],
     );
     print('Data inserted successfully');
@@ -65,11 +70,13 @@ class DatabaseHelper {
 
   static Future updateTeacher(Teacher teacher) async {
     await database.rawUpdate(
-        "update $teacherTable set $teacherName=?,$salary=? where $id=?", [
-      teacher.teacherName,
-      teacher.salary,
-      teacher.id,
-    ]);
+        "update $teacherTable set $teacherName=?,$salary=?,$subject=? where $id=?",
+        [
+          teacher.teacherName,
+          teacher.salary,
+          teacher.subject,
+          teacher.id,
+        ]);
     print("update teacher successfully");
   }
 
@@ -79,7 +86,6 @@ class DatabaseHelper {
       [
         subject.subjectId,
         subject.subjectName,
-
       ],
     );
     print('Data inserted successfully');
@@ -87,7 +93,7 @@ class DatabaseHelper {
 
   static Future<List<Subject>> getSubjectData() async {
     List<Map<String, dynamic>> mapList =
-    await database.rawQuery('select * from $subjectTable');
+        await database.rawQuery('select * from $subjectTable');
 
     List<Subject> subList = [];
     for (int i = 0; i < mapList.length; i++) {
@@ -99,17 +105,15 @@ class DatabaseHelper {
   }
 
   static Future deleteSubject(int idNo) async {
-    await database.rawDelete("delete from $subjectTable where $subjectId = $idNo");
+    await database
+        .rawDelete("delete from $subjectTable where $subjectId = $idNo");
     print("delete subject successfully");
   }
 
   static Future updateSubject(Subject subject) async {
     await database.rawUpdate(
-        "update $subjectTable set $subjectName=? where $subjectId=?", [
-    subject.subjectId,
-     subject.subjectName
-
-    ]);
+        "update $subjectTable set $subjectName=? where $subjectId=?",
+        [subject.subjectId, subject.subjectName]);
     print("update subject successfully");
   }
 }
