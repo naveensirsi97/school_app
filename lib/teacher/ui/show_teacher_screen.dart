@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:school_app/database/database_helper.dart';
-import 'package:school_app/shared/route_map.dart';
 import 'package:school_app/shared/string_const.dart';
 import 'package:school_app/teacher/model/teacher_model.dart';
 import 'package:school_app/teacher/ui/update_teacher_screen.dart';
@@ -72,6 +71,7 @@ class _ShowTeacherScreenState extends State<ShowTeacherScreen> {
                               const SizedBox(
                                 width: 24,
                               ),
+
                               IconButton(
                                 onPressed: () async {
                                   confirmDelete(teacherModel.id);
@@ -85,7 +85,7 @@ class _ShowTeacherScreenState extends State<ShowTeacherScreen> {
                                 onPressed: () async {
                                   await Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return UpdatePatientScreen(
+                                    return UpdateTeacherScreen(
                                         teacher: teacherModel);
                                   }));
                                   getTeacherDate();
@@ -136,6 +136,24 @@ class _ShowTeacherScreenState extends State<ShowTeacherScreen> {
                               ),
                             ],
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text('Subject :',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                              const SizedBox(
+                                width: 79,
+                              ),
+                              Text(
+                                teacherModel.subject,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -155,24 +173,26 @@ class _ShowTeacherScreenState extends State<ShowTeacherScreen> {
             content: const Text("Are you sure to delete it ?"),
             actions: [
               TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text("Cancel")),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("Cancel"),
+              ),
               TextButton(
-                  onPressed: () async {
-                    await deleteStudent(id);
-                    if (mounted) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: const Text("Delete")),
+                onPressed: () async {
+                  await deleteTeacher(id);
+                  if (mounted) {
+                    Navigator.pop(context);
+                  }
+                },
+                child: const Text("Delete",style: TextStyle(color: Colors.red),),
+              ),
             ],
           );
         });
   }
 
-  Future<void> deleteStudent(int id) async {
+  Future<void> deleteTeacher(int id) async {
     await DatabaseHelper.deleteTeacher(id);
     await getTeacherDate();
   }
