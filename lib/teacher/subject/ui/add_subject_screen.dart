@@ -27,14 +27,15 @@ class _AddSubjectScreenState extends State<AddSubjectScreen> {
         title: const Text(''),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             TextField(
+              keyboardType: TextInputType.number,
               controller: subjectIdController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 hintText: 'Fill Id',
               ),
@@ -46,7 +47,7 @@ class _AddSubjectScreenState extends State<AddSubjectScreen> {
               controller: subjectNameController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 hintText: 'Fill Subject',
               ),
@@ -54,15 +55,20 @@ class _AddSubjectScreenState extends State<AddSubjectScreen> {
             const SizedBox(
               height: 16,
             ),
-            ElevatedButton(
-                onPressed: ()async {
-                  Subject subject = Subject(
-                      subjectId: int.parse(subjectIdController.text),
-                      subjectName: subjectNameController.text);
-                  await DatabaseHelper.addSubjectData(subject);
-                  Navigator.pop(context);
-                },
-                child: const Text('Add'))
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                  onPressed: ()async {
+                    Subject subject = Subject(
+                        subjectId: int.parse(subjectIdController.text),
+                        subjectName: subjectNameController.text);
+                    await DatabaseHelper.addSubjectData(subject);
+                    if(mounted) {
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: const Text('Add')),
+            )
           ],
         ),
       ),
