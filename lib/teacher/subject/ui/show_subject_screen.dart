@@ -70,6 +70,9 @@ class _ShowSubjectScreenState extends State<ShowSubjectScreen> {
                                            ),
                                          ],
                                        ),
+                                       const SizedBox(
+                                         height: 16,
+                                       ),
                                        Row(
                                          children: [
                                            const Text('Subject : ',
@@ -84,7 +87,7 @@ class _ShowSubjectScreenState extends State<ShowSubjectScreen> {
                                              ),
                                            ),
                                          ],
-                                       )
+                                       ),
                                      ],
                                    ),
                                    const Spacer(),
