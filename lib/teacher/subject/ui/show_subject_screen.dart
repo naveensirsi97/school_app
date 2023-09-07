@@ -39,89 +39,88 @@ class _ShowSubjectScreenState extends State<ShowSubjectScreen> {
               itemBuilder: (context, index) {
                 Subject subject = subjectList[index];
 
-                return Dismissible(
-                    key: Key('$index'),
-                    confirmDismiss: (direction) async {
-                      if (direction.name == 'endToStart') {
-                        confirmDelete(subject.subjectId);
-                      }
-                    },
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                   Column(
-                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                     children: [
-                                       Row(
-                                         children: [
-                                           const Text(
-                                             'Id : ',
-                                             style: TextStyle(
-                                                 fontSize: 20, fontWeight: FontWeight.w500),
-                                           ),
-                                           Text(
-                                             subject.subjectId.toString(),
-                                             style: const TextStyle(fontSize: 16),
-                                           ),
-                                         ],
-                                       ),
-                                       const SizedBox(
-                                         height: 16,
-                                       ),
-                                       Row(
-                                         children: [
-                                           const Text('Subject : ',
-                                               style: TextStyle(
-                                                   fontSize: 20,
-                                                   fontWeight: FontWeight.w500)),
-
-                                           Text(
-                                             subject.subjectName,
-                                             style: const TextStyle(
-                                               fontSize: 16,
-                                             ),
-                                           ),
-                                         ],
-                                       ),
-                                     ],
-                                   ),
-                                   const Spacer(),
-                                    IconButton(
-                                      onPressed: () async {
-                                        confirmDelete(subject.subjectId);
-                                      },
-                                      icon: const Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
+                return Dismissible(key: Key('$index'),
+                  confirmDismiss: (direction) async {
+                    if (direction.name == 'endToStart') {
+                      confirmDelete(subject.subjectId);
+                    }
+                  },
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'Id : ',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500),
                                       ),
-                                    ),
-                                    IconButton(
-                                      onPressed: () async {
-                                        await Navigator.push(context,
-                                            MaterialPageRoute(builder: (context) {
-                                              return UpdateSubjectScreen(
-                                                  subject: subject);
-                                            }));
-                                        getSubjectDate();
-                                      },
-                                      icon: const Icon(
-                                        Icons.edit,
+                                      Text(
+                                        subject.subjectId.toString(),
+                                        style: const TextStyle(fontSize: 16),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text('Subject : ',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500)),
+                                      Text(
+                                        subject.subjectName,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              IconButton(
+                                onPressed: () async {
+                                  confirmDelete(subject.subjectId);
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
                                 ),
-                              ],),
-
+                              ),
+                              IconButton(
+                                onPressed: () async {
+                                  await Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return UpdateSubjectScreen(
+                                        subject: subject);
+                                  }));
+                                  getSubjectDate();
+                                },
+                                icon: const Icon(
+                                  Icons.edit,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
+                  ),
                 );
               },
-      ),
+            ),
     );
   }
 
